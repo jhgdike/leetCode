@@ -13,10 +13,11 @@ class TreeNode(object):
 class Solution(object):
 
     def rightSideView(self, root):
-        res = []
+        view = []
         if root:
-            next_level = [root]
-            while next_level:
-                res += next_level[-1].val
-                next_level = [kid for node in next_level for kid in (node.left, node.right) if kid]
-        return res
+            level = [root]
+            while level:
+                view += level[-1].val,
+                level = [kid for node in level for kid in
+                         (node.left, node.right) if kid]
+        return view

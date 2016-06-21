@@ -14,10 +14,4 @@ class Solution(object):
             return 10
         if n > 10:
             return 0
-        return self.countNumbersWithUniqueDigits(n-1) + 9 * self.a_list(9, n-1)
-
-    def a_list(self, n, m):
-        a = 1
-        for i in range(0, m):
-            a = a * (n-i)
-        return a
+        return self.countNumbersWithUniqueDigits(n-1) + 9 * reduce(lambda x, y: x * y, xrange(11-n,10))

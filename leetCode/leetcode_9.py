@@ -4,6 +4,6 @@ class Solution(object):
         :type x: int
         :rtype: bool
         """
-        if x < 0:
-            x = -x
-        return str(x) == reversed(str(x))
+        if x < 0 or (x and x % 10 == 0):
+            return False
+        return str(x) == ''.join(reversed(str(x)))

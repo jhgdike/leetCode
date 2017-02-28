@@ -35,7 +35,7 @@ def better_search(nums, target, result):
         else:
             right = mid
     result[0] = left
-    left, right = 0, length
+    right = length
     while left < right:
         mid = (left + right) / 2 + 1
         if nums[mid] > target:

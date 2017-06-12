@@ -11,27 +11,17 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
-        self.max_sum = None
         if not root:
             return 0
+        self.max_sum = root.val
         self.recursion(root)
         return self.max_sum
 
     def recursion(self, root):
         if not root:
-            return
-        branch = self.recursion(root.left), self.recursion(root.right)
-        arg = [x for x in branch if x is not None]
-        if not arg:
-            m = root.val
-        else:
-            m = max(max(arg) + root.val, root.val)
+            return 0
+        l, r = self.recursion(root.left), self.recursion(root.right)
+        m = max(max(l, r) + root.val, root.val)
 
-        if not self.max_sum:
-            self.max_sum = root.val
-
-        s_m = sum(arg) + root.val
-        arg.extend([m, s_m])
-        self.max_sum = max(m, s_m, self.max_sum)
-
-        return m if m > 0 else None
+        self.max_sum = max(m, l + r + root.val, self.max_sum)
+        return m if m > 0 else 0

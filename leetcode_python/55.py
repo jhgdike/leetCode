@@ -11,5 +11,3 @@ class Solution(object):
             if far < i or far == i and nums[i] == 0:
                 return False
             far = max(far, i + nums[i])
-
-print(Solution().canJump([3,2,1,0,4]))

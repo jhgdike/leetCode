@@ -20,6 +20,9 @@ class List(object):
         self.next = None
 
 
+ListNode = List
+
+
 def arr_to_list(nums):
     if not nums:
         return

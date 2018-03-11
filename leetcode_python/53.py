@@ -4,21 +4,13 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        pos = False
-        min_num = None
-        last_sum = cur_sum = max_sum = 0
-        for num in nums:
-            if num < 0:
-                max_sum = max(last_sum, cur_sum, max_sum)
-                if cur_sum > last_sum:
-                    last_sum = cur_sum
-                cur_sum, last_sum = 0, num + last_sum
+        if not nums:
+            return 0
+        max_sum = cur_sum = nums[0]
+        for i in range(1, len(nums)):
+            if cur_sum < 0:
+                cur_sum = nums[i]
             else:
-                cur_sum += num
-                last_sum += num
-                pos = True
-            if min_num is None or min_num < num:
-                min_num = num
-        if not pos:
-            return min_num
-        return max(last_sum, cur_sum, max_sum, nums[-1])
+                cur_sum += nums[i]
+            max_sum = max(max_sum, nums[i], cur_sum)
+        return max_sum

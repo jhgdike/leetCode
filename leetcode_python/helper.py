@@ -46,7 +46,7 @@ def form_tree(nums):
     length = len(nums)
 
     def add_node(node, i):
-        if nums[i] is not None:
+        if i < length and nums[i] is not None:
             node.left = TreeNode(nums[i])
             temp.append(node.left)
         if i + 1 < length and nums[i+1] is not None:

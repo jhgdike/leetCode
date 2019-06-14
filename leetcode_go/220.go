@@ -1,8 +1,5 @@
 package leetcode_go
 
-import "math"
-
-
 func containsNearbyAlmostDuplicate(nums []int, k int, t int) bool {
     if t < 0 || k < 1 {
         return false

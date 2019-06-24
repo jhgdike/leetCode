@@ -2,7 +2,21 @@
 不对，还没做出来
 """
 
+
 class Solution(object):
+    def smallestSubsequence(self, text):
+        stack = []
+        for i, t in enumerate(text):
+            if t in stack:
+                continue
+            while stack and t < stack[-1] and text.find(stack[-1], i) != -1:
+                stack.pop()
+            stack.append(t)
+        return ''.join(stack)
+
+
+class Solution2(object):
+    """不对，还没做出来"""
     def smallestSubsequence(self, text):
         """
         :type text: str
@@ -26,5 +40,6 @@ class Solution(object):
         return seq
 
 
-_ = ["cbaacabcaaccaacababa", "cdadabcc", "ddeeccde"]
-print(Solution().smallestSubsequence("cbaacabcaaccaacababa"))
+tests = ["cdadabcc", "cbaacabcaaccaacababa", "cdadabcc", "ddeeccde", 'leetcode', 'ecbacba']
+for test in tests:
+    print(Solution().smallestSubsequence(test))

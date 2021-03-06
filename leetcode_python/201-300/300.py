@@ -35,3 +35,23 @@ class Solution1(object):
             dp[i] += max_val
             res = max(res, dp[i])
         return res
+
+    def lengthOfLIS3(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        res = []
+        for n in nums:
+            if len(res) == 0 or n > res[-1]:
+                res.append(n)
+            else:
+                for i in range(len(res)):
+                    if res[i] >= n:
+                        res[i] = n
+                        break
+        print(res)
+        return len(res)
+
+
+print(Solution1().lengthOfLIS3([4,10,4,3,8,9]))

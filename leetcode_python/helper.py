@@ -42,10 +42,10 @@ def list_to_arr(list):
     return arr
 
 
-def form_tree(nums):
-    length = len(nums)
+def form_tree(nums):  # 注意，此数组保存数据只保存到叶子节点以及叶子节点下的null，并非一个完全二叉树
+    length = len(nums)  # 数的总个数
 
-    def add_node(node, i):
+    def add_node(node, i):  # 给node加数组下标为i的节点
         if i < length and nums[i] is not None:
             node.left = TreeNode(nums[i])
             temp.append(node.left)
@@ -56,7 +56,7 @@ def form_tree(nums):
     if not nums:
         return
     root = TreeNode(nums[0])
-    temp = [root]
+    temp = [root]  # 层次遍历
     i = 1
     while i < length:
         node_stack = temp
@@ -65,3 +65,7 @@ def form_tree(nums):
             add_node(node, i)
             i += 2
     return root
+
+
+form_tree([1, 2, 3, None, None, 4, 5])
+sorted()

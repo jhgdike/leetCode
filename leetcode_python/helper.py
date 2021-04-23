@@ -65,7 +65,3 @@ def form_tree(nums):  # 注意，此数组保存数据只保存到叶子节点�
             add_node(node, i)
             i += 2
     return root
-
-
-form_tree([1, 2, 3, None, None, 4, 5])
-sorted()

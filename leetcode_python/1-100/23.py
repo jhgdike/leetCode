@@ -1,28 +1,73 @@
 # Definition for singly-linked list.
 class ListNode(object):
-    def __init__(self, x):
+    def __init__(self, x, next=None):
         self.val = x
-        self.next = None
+        self.next = next
 
+def __gt__(self, other):
+    return self.val > other.val
 
-from Queue import PriorityQueue
-class Solution(object):
-    def mergeKLists(self, lists):
-        dummy = ListNode(None)
-        curr = dummy
-        q = PriorityQueue()
-        for node in lists:
-            if node:
-                q.put((node.val,node))
-        while q.qsize() > 0:
-            curr.next = q.get()[1]
-            curr = curr.next
-            if curr.next:
-                q.put((curr.next.val, curr.next))
-        return dummy.next
+def __lt__(self, other):
+    return self.val < other.val
+
+def __eq__(self, other):
+    return self.val == other.val
+
+def __ge__(self, other):
+    return self.val >= other.val
+
+def __le__(self, other):
+    return self.val <= other.val
 
 
 from operator import attrgetter
+import heapq
+
+
+class Solution:
+    # @param a list of ListNode
+    # @return a ListNode
+    def mergeKLists(self, lists):
+        heap = []
+        for curr in lists:
+            if curr:
+                heapq.heappush(heap, curr)
+        head = pre = None
+        while heap:
+            cur = heap[0]
+            if not head:
+                pre = head = cur
+            else:
+                pre.next = cur
+                pre = cur
+            cur = cur.next
+            if cur:
+                heapq.heapreplace(heap, cur)
+            else:
+                heapq.heappop(heap)
+
+        return head
+
+
+def arr_to_list(nums):
+    if not nums:
+        return
+    origin = ListNode(nums[0])
+    l = origin
+    for num in nums[1:]:
+        l.next = ListNode(num)
+        l = l.next
+    return origin
+
+
+s = Solution()
+s.mergeKLists([
+    arr_to_list([1, 4, 5]),
+    arr_to_list([1, 3, 4]),
+    arr_to_list([2, 6])])
+
+from operator import attrgetter
+
 
 class Solution1:
     # @param a list of ListNode
@@ -49,6 +94,8 @@ class Solution1:
 
 
 """time limit exceeded"""
+
+
 class _Solution(object):
     def mergeKLists(self, lists):
         """
@@ -72,6 +119,3 @@ class _Solution(object):
             node = node.next
         if node.next is None:
             node.next = node1
-
-
-

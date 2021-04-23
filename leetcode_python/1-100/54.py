@@ -24,3 +24,29 @@ class Solution(object):
                     res.append(matrix[i][start])
 
         return res
+
+
+class Solution2(object):
+    def spiralOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        n = len(matrix)
+        m = len(matrix[0])
+        k = min(m, n)
+        ans = []
+        for loop in range(0, (k+1)//2):
+            for i in range(loop, m-loop): ans.append(matrix[loop][i])
+            for i in range(loop+1, n-loop-1): ans.append(matrix[i][m-loop-1])
+            if n - loop - 1 != loop:
+                for i in range(m-loop-1, loop-1, -1):
+                    ans.append(matrix[n-loop-1][i])
+            if m-loop-1 != loop:
+                for i in range(n-loop-2, loop, -1):
+                    ans.append(matrix[i][loop])
+        return ans
+
+
+print(Solution2().spiralOrder([[1,2,3],[4,5,6],[7,8,9]]))
+print(Solution2().spiralOrder([[7],[9],[6]]))

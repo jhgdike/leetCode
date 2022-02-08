@@ -9,6 +9,8 @@ class Solution(object):
         dict_x, dict_y, dict_d1, dict_d2, res = {}, {}, {}, {}, []
         set_lamps = set()
         for x, y in lamps:
+            if (x, y) in set_lamps:
+                continue
             dict_x[x] = dict_x.get(x, 0) + 1
             dict_y[y] = dict_y.get(y, 0) + 1
             dict_d1[x + y] = dict_d1.get(x + y, 0) + 1
